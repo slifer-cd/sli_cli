@@ -1,1 +1,3 @@
-export const heloo = console.log("ahm");
+#!/usr/bin/env node
+
+console.log("ahmad");

@@ -2,7 +2,12 @@
   "name": "sli_cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "sli": "./dist/index.js"
+  },
   "scripts": {
     "test": "vitest run",
     "build": "tsup ./src/ --format cjs,esm --dts",
@@ -17,5 +22,8 @@
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
   }
 }
