@@ -106,6 +106,9 @@ program
         await makefiles();
         if (opt.git) {
             await git.init();
+            await git.branch({
+                "-M": "main",
+            });
         }
     });
 
