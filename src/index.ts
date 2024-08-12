@@ -4,17 +4,19 @@ import { Command } from "commander";
 import { mkdir } from "fs/promises";
 import { createWriteStream } from "fs";
 import path from "path";
-import { simpleGit, CleanOptions } from "simple-git";
+import { simpleGit } from "simple-git";
 const program = new Command();
 const git = simpleGit();
 
-async function makedirs() {
+async function makedirs(g: boolean | undefined) {
     await mkdir(path.join(process.cwd(), "test"), {});
     await mkdir(path.join(process.cwd(), "src"), {});
-    await mkdir(path.join(process.cwd(), ".github"), {});
-    await mkdir(path.join(process.cwd(), ".github", "workflows"), {});
+    if (g) {
+        await mkdir(path.join(process.cwd(), ".github"), {});
+        await mkdir(path.join(process.cwd(), ".github", "workflows"), {});
+    }
 }
-async function makefiles() {
+async function makefiles(g: boolean | undefined) {
     // json
     const packagefile = createWriteStream(
         path.join(process.cwd(), "package.json")
@@ -22,9 +24,10 @@ async function makefiles() {
     packagefile.write(`{
   "name": "${__dirname.split("/").at(-1)}",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \\"Error: no test specified\\" && exit 1"
+    "test": "vitest run",
+    "build": "tsup ./src/ --format cjs,esm --dts"
   },
   "keywords": [],
   "author": "",
@@ -85,16 +88,20 @@ describe("dos", () => {
 });
 `);
     tstestfile.end();
-    const yml = createWriteStream(
-        path.join(process.cwd(), ".github", "workflows", "main.yml")
-    );
-    yml.end();
-    const gitignore = createWriteStream(path.join(process.cwd(), ".gitignore"));
-    gitignore.write(`node_modules
-dist
-.vscode
-`);
-    gitignore.end();
+    if (g) {
+        const yml = createWriteStream(
+            path.join(process.cwd(), ".github", "workflows", "main.yml")
+        );
+        yml.end();
+        const gitignore = createWriteStream(
+            path.join(process.cwd(), ".gitignore")
+        );
+        gitignore.write(`node_modules
+        dist
+        .vscode
+        `);
+        gitignore.end();
+    }
 }
 
 program
@@ -102,13 +109,10 @@ program
     .option("-g, --git", "add git")
     .description("initiate the structure")
     .action(async (opt: { git?: boolean }) => {
-        await makedirs();
-        await makefiles();
+        await makedirs(opt.git);
+        await makefiles(opt.git);
         if (opt.git) {
             await git.init();
-            await git.branch({
-                "-M": "main",
-            });
         }
     });
 
