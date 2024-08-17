@@ -28,9 +28,5 @@
   "dependencies": {
     "commander": "^12.1.0",
     "simple-git": "^3.25.0"
-  },
-  "repository":"https://github.com/slifer-cd/sli_cli",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
