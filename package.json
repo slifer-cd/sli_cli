@@ -28,5 +28,8 @@
   "dependencies": {
     "commander": "^12.1.0",
     "simple-git": "^3.25.0"
+  },
+  "repository": {
+    "url": "git://github.com/slifer-cd/sli_cli"
   }
 }
