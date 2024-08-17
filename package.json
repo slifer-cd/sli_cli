@@ -31,5 +31,8 @@
   },
   "repository": {
     "url": "git://github.com/slifer-cd/sli_cli"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
