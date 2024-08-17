@@ -1,6 +1,6 @@
 {
   "name": "@slifercd/sli_cli",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -21,6 +21,7 @@
     "@types/commander": "^2.12.2",
     "@types/node": "^22.2.0",
     "tsup": "^8.2.4",
+    "tsx": "^4.17.0",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5"
   },
