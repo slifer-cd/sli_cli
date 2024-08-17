@@ -5,7 +5,7 @@ import { simpleGit } from "simple-git";
 import makeDirs from "./dirs.js";
 import makeFiles from "./files.js";
 import tsProConstants from "./tscontants.js";
-
+import { exec } from "child_process";
 const program = new Command();
 const git = simpleGit();
 
@@ -26,6 +26,12 @@ program
             });
             await makeDirs(maindir, ts.dirs);
             await makeFiles(maindir, ts.files);
+            if (opt.git) {
+                await git.init();
+                exec("git branch -M main");
+                await git.add("*");
+                await git.commit("initial commit");
+            }
         }
     );
 
