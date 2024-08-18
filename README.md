@@ -10,7 +10,7 @@
 
 -   To add license -l then the username
 
-### and you can combine the all of them -agl name or -gal name
+### and you can combine the all of them  as long the l is the last like : -agl name
 
 ```bash
 
@@ -28,7 +28,7 @@ sli init_ts -gal slifer
 
 -   To add license -l then the username
 
-### and you can combine the all of them -agl name or -gal name
+### and you can combine the all of them as long the l is the last like : -amgl name
 
 ```bash
 
