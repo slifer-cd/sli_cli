@@ -2,11 +2,6 @@ const pyProConstants: pyfunc = async ({ git, actions, license, module }) => {
     return {
         dirs: [
             {
-                name: "src",
-                location: [],
-                condition: true,
-            },
-            {
                 name: "test",
                 location: [],
                 condition: true,
