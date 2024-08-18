@@ -1,23 +1,4 @@
-interface Dirs {
-    name: string;
-    location: string[];
-    condition: boolean | undefined;
-}
-
-interface Files extends Dirs {
-    content: string;
-}
-
-type func = (_: {
-    actions: boolean;
-    git: boolean;
-    license: string | undefined;
-}) => Promise<{
-    dirs: Dirs[];
-    files: Files[];
-}>;
-
-const tsProConstants: func = async ({ git, actions, license }) => {
+const tsProConstants: tsfunc = async ({ git, actions, license }) => {
     return {
         dirs: [
             {
@@ -33,12 +14,12 @@ const tsProConstants: func = async ({ git, actions, license }) => {
             {
                 name: ".github",
                 location: [],
-                condition: actions,
+                condition: actions && git,
             },
             {
                 name: "workflows",
                 location: [".github"],
-                condition: actions,
+                condition: actions && git,
             },
         ],
         files: [
@@ -116,7 +97,7 @@ describe("dos", () => {
             {
                 name: "main.yml",
                 location: [".github", "workflows"],
-                condition: actions,
+                condition: actions && git,
                 content: "",
             },
             {
