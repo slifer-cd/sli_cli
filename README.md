@@ -18,7 +18,7 @@ sli init_ts -gal slifer
 
 ```
 
-## sli init_ts
+## sli init_py
 
 -   To make the structer and you can use -g or --git to init git
 
