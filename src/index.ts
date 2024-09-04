@@ -76,11 +76,9 @@ program
     .option("-l, --license <string>", "add License")
     .description("initiate the structure")
     .action(async (name: string, opt: { pnpm?: boolean; license?: string }) => {
-        let text =
-            "npx create-next-app@latest name --ts --no-eslint --tailwind --app --src-dir --use-pnpm --import-alias @/*";
+        let text = `npx create-next-app@latest ${name} --ts --no-eslint --tailwind --app --src-dir --use-pnpm --import-alias @/*`;
         if (!opt.pnpm) {
-            text =
-                "npx create-next-app@latest name --ts --no-eslint --tailwind --app --src-dir --import-alias @/*";
+            text = `npx create-next-app@latest ${name} --ts --no-eslint --tailwind --app --src-dir --import-alias @/*`;
         }
         exec(text);
         if (opt.license) {
