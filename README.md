@@ -37,3 +37,9 @@ sli init_py -gaml slifer
 ```
 
 ## sli init_next
+
+-   To use pnpm -p or --pnpm
+
+-   To add license -l or --license then the username
+
+### and you can combine the both of them as long the l is the last like : -pl name
