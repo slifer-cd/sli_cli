@@ -3,7 +3,6 @@
 import { Command } from "commander";
 import { simpleGit } from "simple-git";
 import { exec } from "child_process";
-import { join as pjoin } from "path";
 
 import makeDirs from "./dirs.js";
 import makeFiles from "./files.js";
