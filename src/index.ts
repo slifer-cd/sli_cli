@@ -81,11 +81,8 @@ program
             text = `npx create-next-app@latest ${name} --ts --no-eslint --tailwind --app --src-dir --import-alias @/*`;
         }
         exec(text);
-        await setTimeout(() => {}, 3000);
         if (opt.license) {
-            await makeFiles(pjoin(maindir, name), [
-                await getLicense(opt.license),
-            ]);
+            await makeFiles(maindir, [await getLicense(opt.license)]);
         }
     });
 
