@@ -1,8 +1,8 @@
-export default async function getLicense(license: string) {
+export default async function getLicense(license: string, folder: string) {
     return {
         name: "LICENSE",
         condition: true,
-        location: [],
+        location: [folder],
         content: `MIT License
 
 Copyright (c) 2024 ${license}

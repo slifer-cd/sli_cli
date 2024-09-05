@@ -82,7 +82,7 @@ program
         }
         exec(text);
         if (opt.license) {
-            await makeFiles(maindir, [await getLicense(opt.license)]);
+            await makeFiles(maindir, [await getLicense(opt.license, name)]);
         }
     });
 
