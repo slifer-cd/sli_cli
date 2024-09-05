@@ -9,7 +9,6 @@ import makeDirs from "./dirs.js";
 import makeFiles from "./files.js";
 import tsProConstants from "./tsconstants.js";
 import pyProConstants from "./pyconstants.js";
-import getLicense from "./nextconstants.js";
 
 const program = new Command();
 const git = simpleGit();
@@ -73,17 +72,12 @@ program
 program
     .command("init_next <name>")
     .option("-p, --pnpm", "install it using pnpm")
-    .option("-l, --license <string>", "add License")
-    .description("initiate the structure")
-    .action(async (name: string, opt: { pnpm?: boolean; license?: string }) => {
+    .action(async (name: string, opt: { pnpm?: boolean }) => {
         let text = `npx create-next-app@latest ${name} --ts --no-eslint --tailwind --app --src-dir --use-pnpm --import-alias @/*`;
         if (!opt.pnpm) {
             text = `npx create-next-app@latest ${name} --ts --no-eslint --tailwind --app --src-dir --import-alias @/*`;
         }
         exec(text);
-        if (opt.license) {
-            await makeFiles(maindir, [await getLicense(opt.license, name)]);
-        }
     });
 
 program.parse(process.argv);
